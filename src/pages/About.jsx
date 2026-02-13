@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 // GSAP is expected to be available globally
 
 // --- Icon Components ---
@@ -135,6 +136,10 @@ const About = () => {
 
     return (
         <div ref={containerRef} className="bg-neo-white text-black font-sans">
+            <Helmet>
+                <title>About Us | Relyce Infotech - Crafting Digital Innovation</title>
+                <meta name="description" content="Learn about Relyce Infotech's journey, our team of experts, and our commitment to delivering innovative IT and AI solutions for businesses worldwide." />
+            </Helmet>
             
             {/* --- Section 1: Introduction --- */}
             <div className="intro-section py-24 sm:py-32 overflow-hidden border-b-4 border-black">

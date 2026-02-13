@@ -4,8 +4,8 @@
   <!-- Home -->
   <url>
     <loc>https://relyceinfotech.com/</loc>
-    <lastmod>2025-08-25</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
 
@@ -38,6 +38,30 @@
   <!-- Contact -->
   <url>
     <loc>https://relyceinfotech.com/contact/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://relyceinfotech.com/faq/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact Form -->
+  <url>
+    <loc>https://relyceinfotech.com/contactus/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Internship -->
+  <url>
+    <loc>https://relyceinfotech.com/internship/</loc>
     <lastmod>2025-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

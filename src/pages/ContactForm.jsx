@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -98,6 +99,10 @@ const ContactForm = () => {
 
     return (
         <div className="bg-neo-pink py-20 sm:py-24 relative border-t-4 border-black">
+            <Helmet>
+                <title>Start a Project | Relyce Infotech - Contact Form</title>
+                <meta name="description" content="Ready to build something great? Fill out our project inquiry form and let's discuss how Relyce Infotech can bring your vision to life." />
+            </Helmet>
             {isSubmitting && <LoadingModal />}
             <div className="max-w-4xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-12">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
 // GSAP is expected to be available globally
 
 const servicesData = [
@@ -82,6 +83,10 @@ const Services = () => {
 
     return (
         <section className="bg-neo-blue border-b-4 border-black px-6 py-20 sm:py-24 font-sans" aria-label="Services Section">
+            <Helmet>
+                <title>Our Services | Relyce Infotech - Web, App, AI & Cloud Solutions</title>
+                <meta name="description" content="Explore our comprehensive IT services including Web Development, Mobile Apps, Digital Marketing, Software Development, UI/UX Design, E-commerce, and IT Consulting." />
+            </Helmet>
             <h2 className="text-4xl md:text-6xl font-black text-center mb-12 uppercase text-white text-stroke-black drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">
                 Our Services
             </h2>
