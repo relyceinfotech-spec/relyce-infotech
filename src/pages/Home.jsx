@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import Header from './components/Header'
 // import Cursor from "./components/CustomCursor"
 import Hero from '../components/HeroSection'
@@ -8,7 +11,7 @@ import Services from '../pages/Services'
 import ChooseUs from '../components/Chooseus'
 import Product from '../components/SaasProduct'
 import Marquee from '../components/Marquee'
-// import Footer from "./components/Footer"
+// import Footer from "../components/Footer"
 import "../index.css"
 
 import IntroOverlay from '../components/IntroOverlay'
@@ -45,8 +48,37 @@ const Home = () => {
     setShowIntro(false);
   };
 
+  /* 
+    GSAP Fade-in Animation 
+    Replaces the CSS 'animate-fade-in' to ensure we can clear the 'transform' property 
+    after the animation completes. This is CRITICAL because a persistent transform 
+    creates a new stacking context that breaks 'position: fixed' in child elements 
+    (like pinned ScrollTriggers).
+  */
+  useGSAP(() => {
+    // Only animate if NOT showing intro (or after it finishes)
+    if (!showIntro) {
+        gsap.fromTo(".home-container", 
+            { 
+                opacity: 0, 
+                y: 20 
+            }, 
+            { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                ease: "power2.out",
+                clearProps: "transform", // CRITICAL: Removes transform to restore fixed positioning context
+                onComplete: () => {
+                  ScrollTrigger.refresh(); // Ensure pin positions are recalculated after transform removal
+                }
+            }
+        );
+    }
+  }, [showIntro]);
+  
   return (
-    <div className="animate-fade-in">
+    <div className="home-container"> 
 
       
       {/* <Header/> */}
@@ -66,7 +98,7 @@ const Home = () => {
       <Services/>
       <ChooseUs/>
       <Product/>
-      {/* <Footer/> */}
+      {/* Footer is already rendered in App.jsx */}
       {/* <Cursor/> */}
     </div>
   )

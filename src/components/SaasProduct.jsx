@@ -60,7 +60,8 @@ const ProductSection = () => {
         ease: 'power3.out',
         scrollTrigger: {
           trigger: leftColumn.current,
-          start: 'top 85%',
+          start: 'top bottom', // Start animating when top of element hits bottom of viewport
+          end: 'bottom center', // End when bottom of element hits center
           toggleActions: 'play none none reverse'
         }
       });
@@ -73,10 +74,10 @@ const ProductSection = () => {
   }, { scope: container });
 
   return (
-    <div id="our-product" ref={container} className="bg-neo-green min-h-screen overflow-hidden border-b-4 border-black relative pb-20 md:pb-0">
+    <div id="our-product" ref={container} className="bg-neo-green min-h-screen md:overflow-hidden border-b-4 border-black relative pb-20 md:pb-0">
       {/* On mobile: grid-cols-1 renders items in DOM order (Text then Product) */}
       {/* On desktop: grid-cols-2 with order classes to swap them visually */}
-      <div className="h-full grid grid-cols-1 md:grid-cols-2 items-center">
+      <div className="min-h-screen md:h-full grid grid-cols-1 md:grid-cols-2 items-center">
         
         {/* Right Column: Title and Description - FIRST in DOM for mobile order */}
         {/* 'md:order-last' pushes this to the right side ONLY on desktop screens */}
