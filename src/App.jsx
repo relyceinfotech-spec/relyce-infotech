@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
@@ -53,6 +53,11 @@ const App = () => {
               </>
             } 
           />
+
+          {/* Legacy/Indexed path redirects */}
+          <Route path="/en/*" element={<Navigate to="/" replace />} />
+          <Route path="/hi/*" element={<Navigate to="/" replace />} />
+          <Route path="/index.html" element={<Navigate to="/" replace />} />
 
           {/* About page */}
           <Route 
