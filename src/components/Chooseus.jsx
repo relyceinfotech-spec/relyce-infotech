@@ -9,12 +9,12 @@ const featuresData = [
   {
     number: "01",
     title: "Comprehensive Support",
-    description: "From the initial spark of an idea to a successful product launch and beyond, we provide continuous, end-to-end support to ensure your project thrives.",
+    description: "From the initial spark of an idea to a successful product launch and beyond, we provide continuous, end to end support to ensure your project thrives.",
   },
   {
     number: "02",
     title: "Affordable Solutions",
-    description: "We believe in empowering new businesses. Our services are strategically priced to be cost-effective for startups and SMEs without compromising on quality.",
+    description: "We believe in empowering new businesses. Our services are strategically priced to be cost effective for startups and SMEs without compromising on quality.",
   },
   {
     number: "03",
@@ -23,7 +23,7 @@ const featuresData = [
   },
   {
     number: "04",
-    title: "Client-Centric Approach",
+    title: "Client Centric Approach",
     description: "Your success is our primary goal. We take the time to deeply understand your specific business needs to ensure our solutions are perfectly aligned with your vision.",
   },
 ];

@@ -102,7 +102,7 @@ const Contact = () => {
             color: 'rgba(255, 255, 255, 0.3)', fontWeight: 400,
             margin: 'clamp(1.2rem, 2vw, 1.8rem) 0 0 0', maxWidth: '420px',
           }}>
-            Whether you have a project idea, a question, or just want to explore possibilities — we're ready.
+            Whether you have a project idea, a question, or just want to explore possibilities  we're ready.
           </p>
         </div>
 
@@ -152,7 +152,7 @@ const Contact = () => {
                 color: 'rgba(255, 255, 255, 0.3)', margin: 0,
                 maxWidth: '360px',
               }}>
-                Whether you're starting fresh or scaling up — we have a path for you.
+                Whether you're starting fresh or scaling up  we have a path for you.
               </p>
             </div>
 

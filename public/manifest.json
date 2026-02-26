@@ -1,0 +1,15 @@
+{
+  "short_name": "Relyce",
+  "name": "Relyce Infotech",
+  "icons": [
+    {
+      "src": "/image.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0a0a0a",
+  "display": "standalone",
+  "theme_color": "#0a0a0a"
+}

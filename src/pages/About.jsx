@@ -20,21 +20,21 @@ const teamMembers = [
 
 const timelineData = [
   { date: "Sep 2024", title: "The Genesis", description: "Founded with a vision to bridge the gap between ideas and technology, starting with a small team of passionate developers." },
-  { date: "Dec 2024", title: "First Major Delivery", description: "Successfully delivered a large-scale e-commerce platform, proving our capability in complex, high-stakes development." },
+  { date: "Dec 2024", title: "First Major Delivery", description: "Successfully delivered a large scale e commerce platform, proving our capability in complex, high stakes development." },
   { date: "Jan 2025", title: "Team Expansion", description: "Grew our team and expanded services to include mobile app development, AI engineering, and cloud solutions." },
-  { date: "Sep 2025", title: "AI Innovation", description: "Launched our proprietary AI-driven analytics tool, helping businesses make smarter, data-backed decisions at scale." },
+  { date: "Sep 2025", title: "AI Innovation", description: "Launched our proprietary AI driven analytics tool, helping businesses make smarter, data backed decisions at scale." },
 ];
 
 const processSteps = [
-  { number: "01", title: "Discover", description: "Deep-dive into your vision, goals, and market landscape to define the perfect strategy." },
+  { number: "01", title: "Discover", description: "Deep dive into your vision, goals, and market landscape to define the perfect strategy." },
   { number: "02", title: "Design", description: "Craft intuitive interfaces and robust architecture that align with your brand identity." },
-  { number: "03", title: "Develop", description: "Build scalable, production-ready solutions with clean code and modern best practices." },
-  { number: "04", title: "Deploy", description: "Launch with confidence — seamless deployment, monitoring, and ongoing support." },
+  { number: "03", title: "Develop", description: "Build scalable, production ready solutions with clean code and modern best practices." },
+  { number: "04", title: "Deploy", description: "Launch with confidence  seamless deployment, monitoring, and ongoing support." },
 ];
 
 const values = [
   { title: "Innovation First", description: "We explore emerging technologies relentlessly to keep you ahead of the curve." },
-  { title: "Client-Centric", description: "Your success drives every decision. We tailor solutions to your unique challenges." },
+  { title: "Client Centric", description: "Your success drives every decision. We tailor solutions to your unique challenges." },
   { title: "Uncompromising Quality", description: "Excellence isn't negotiable. Every line of code, every pixel, is crafted with care." },
 ];
 

@@ -44,15 +44,15 @@ const servicesData = [
   },
   {
     number: "06",
-    title: "E-commerce\nSolutions",
-    description: "Feature-rich online stores with seamless shopping experiences. Secure payments, inventory management, and end-to-end solutions.",
+    title: "E commerce\nSolutions",
+    description: "Feature rich online stores with seamless shopping experiences. Secure payments, inventory management, and end to end solutions.",
     tools: ["Shopify", "WooCommerce", "Magento", "Stripe"],
     accent: "rgba(212, 168, 83, 0.5)",
   },
   {
     number: "07",
     title: "SaaS\nSolutions",
-    description: "Scalable cloud-based software tailored to your business. Subscription models, integrations, and growth-driven strategies.",
+    description: "Scalable cloud based software tailored to your business. Subscription models, integrations, and growth driven strategies.",
     tools: ["SaaS Strategy", "APIs", "Cloud-Native", "Data Security"],
     accent: "rgba(200, 155, 75, 0.5)",
   },

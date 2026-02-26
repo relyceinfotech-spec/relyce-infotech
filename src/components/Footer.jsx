@@ -17,7 +17,7 @@ const footerColumns = [
     links: [
       { label: "Relyce AI", href: "#" },
       { label: "SaaS Solutions", href: "#" },
-      { label: "E-commerce", href: "#" },
+      { label: "E commerce", href: "#" },
       { label: "Custom Software", href: "#" },
     ],
   },

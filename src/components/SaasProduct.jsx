@@ -14,7 +14,7 @@ const features = [
       </svg>
     ),
     title: "Lightning Fast",
-    desc: "Instant AI responses with sub-second latency",
+    desc: "Instant AI responses with sub second latency",
   },
   {
     icon: (
@@ -41,7 +41,7 @@ const features = [
       </svg>
     ),
     title: "Enterprise Security",
-    desc: "Bank-grade encryption and data protection",
+    desc: "Bank grade encryption and data protection",
   },
 ];
 
@@ -290,7 +290,7 @@ const ProductSection = () => {
               margin: '0 0 clamp(2rem, 3vw, 3rem) 0',
               fontWeight: 400,
             }}>
-              Relyce AI is a state-of-the-art platform that leverages artificial intelligence
+              Relyce AI is a state of the art platform that leverages artificial intelligence
               to automate complex tasks, analyze data with incredible precision, and provide
               actionable insights. Enhance your team's productivity and drive smarter business
               decisions with our powerful, intuitive AI solution.
