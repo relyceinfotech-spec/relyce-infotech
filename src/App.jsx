@@ -5,6 +5,13 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Cursor from "./components/CustomCursor.jsx"; 
 import Home from "./pages/Home.jsx"; // directly import Home for instant render
+import ScrollToTop from "./components/ScrollToTop.jsx";
+
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-[50vh] bg-[#0a0a0a]">
+    <div className="w-8 h-8 border-2 border-[#D4A853] border-t-transparent rounded-full animate-spin opacity-50"></div>
+  </div>
+);
 
 // SEO components
 import HeroSEO from "./seo/HeroSEO.jsx";
@@ -24,6 +31,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <ScrollToTop />
 
       <Routes>
           {/* Home page renders instantly with SEO */}
@@ -50,7 +58,7 @@ const App = () => {
           <Route 
             path="/about" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <About />
               </Suspense>
             } 
@@ -60,7 +68,7 @@ const App = () => {
           <Route 
             path="/faq" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <>
                   <FAQSEO />
                   <Faq />
@@ -73,7 +81,7 @@ const App = () => {
           <Route 
             path="/contact" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <Contact />
               </Suspense>
             } 
@@ -83,7 +91,7 @@ const App = () => {
           <Route 
             path="/services" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <Services />
               </Suspense>
             } 
@@ -93,7 +101,7 @@ const App = () => {
           <Route 
             path="/contactus" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <ContactForm />
               </Suspense>
             } 
@@ -103,7 +111,7 @@ const App = () => {
           <Route 
             path="/internship" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <Internship />
               </Suspense>
             } 
@@ -113,7 +121,7 @@ const App = () => {
           <Route 
             path="/relyce" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <Relyce />
               </Suspense>
             } 
@@ -123,7 +131,7 @@ const App = () => {
           <Route 
             path="*" 
             element={
-              <Suspense fallback={<Home />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <Error />
               </Suspense>
             } 

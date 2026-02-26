@@ -212,6 +212,14 @@ const GhostCursor = ({
   }
 
   useEffect(() => {
+    // If it's a touch device, completely disable the effect to save performace
+    if (isTouch) {
+      if (containerRef.current) {
+        containerRef.current.style.display = 'none';
+      }
+      return;
+    }
+
     const host = containerRef.current;
     const parent = host?.parentElement;
     if (!host || !parent) return;
@@ -222,11 +230,11 @@ const GhostCursor = ({
     }
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: !isTouch,
+      antialias: false,
       alpha: true,
       depth: false,
       stencil: false,
-      powerPreference: isTouch ? 'low-power' : 'high-performance',
+      powerPreference: 'high-performance',
       premultipliedAlpha: false,
       preserveDrawingBuffer: false
     });

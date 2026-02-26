@@ -6,6 +6,13 @@ const CustomCursor = () => {
   const cursorBorderRef = useRef(null);
 
   useEffect(() => {
+    // Disable on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      if (cursorRef.current) cursorRef.current.style.display = 'none';
+      if (cursorBorderRef.current) cursorBorderRef.current.style.display = 'none';
+      return;
+    }
+
     const cursor = cursorRef.current;
     const cursorBorder = cursorBorderRef.current;
 
