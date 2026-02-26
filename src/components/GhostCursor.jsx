@@ -212,12 +212,9 @@ const GhostCursor = ({
   }
 
   useEffect(() => {
-    // If it's a touch device, completely disable the effect to save performace
+    // If it's a touch device, reduce resolution budget further to save performance
     if (isTouch) {
-      if (containerRef.current) {
-        containerRef.current.style.display = 'none';
-      }
-      return;
+      // Allow ambient animation but lower the pixel budget
     }
 
     const host = containerRef.current;
@@ -421,6 +418,50 @@ const GhostCursor = ({
     parent.addEventListener('pointermove', onPointerMove, { passive: true });
     parent.addEventListener('pointerenter', onPointerEnter, { passive: true });
     parent.addEventListener('pointerleave', onPointerLeave, { passive: true });
+    
+    // Add touch support
+    const onTouchMove = e => {
+      if (e.touches && e.touches.length > 0) {
+        const rect = parent.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = THREE.MathUtils.clamp((touch.clientX - rect.left) / Math.max(1, rect.width), 0, 1);
+        const y = THREE.MathUtils.clamp(1 - (touch.clientY - rect.top) / Math.max(1, rect.height), 0, 1);
+        currentMouseRef.current.set(x, y);
+        pointerActiveRef.current = true;
+        lastMoveTimeRef.current = performance.now();
+        ensureLoop();
+      }
+    };
+    const onTouchStart = () => {
+      pointerActiveRef.current = true;
+      ensureLoop();
+    };
+    const onTouchEnd = () => {
+      pointerActiveRef.current = false;
+      lastMoveTimeRef.current = performance.now();
+      ensureLoop();
+    };
+
+    parent.addEventListener('touchmove', onTouchMove, { passive: true });
+    parent.addEventListener('touchstart', onTouchStart, { passive: true });
+    parent.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    // Handle device orientation for a subtle gyro effect if applicable
+    const onDeviceOrientation = e => {
+      if (e.gamma !== null && e.beta !== null && !pointerActiveRef.current) {
+         // Map tilt (-90 to 90) to roughly 0-1
+         const x = THREE.MathUtils.clamp((e.gamma + 90) / 180, 0, 1);
+         // Map tilt (-180 to 180 or -90 to 90)
+         const y = THREE.MathUtils.clamp((e.beta + 90) / 180, 0, 1);
+         currentMouseRef.current.set(x, 1 - y); // Invert Y
+         lastMoveTimeRef.current = performance.now();
+         ensureLoop();
+      }
+    };
+    
+    if (typeof window !== 'undefined' && window.DeviceOrientationEvent) {
+       window.addEventListener('deviceorientation', onDeviceOrientation, { passive: true });
+    }
 
     ensureLoop();
 
@@ -432,6 +473,15 @@ const GhostCursor = ({
       parent.removeEventListener('pointermove', onPointerMove);
       parent.removeEventListener('pointerenter', onPointerEnter);
       parent.removeEventListener('pointerleave', onPointerLeave);
+      
+      parent.removeEventListener('touchmove', onTouchMove);
+      parent.removeEventListener('touchstart', onTouchStart);
+      parent.removeEventListener('touchend', onTouchEnd);
+      
+      if (typeof window !== 'undefined' && window.DeviceOrientationEvent) {
+         window.removeEventListener('deviceorientation', onDeviceOrientation);
+      }
+      
       resizeObsRef.current?.disconnect();
 
       scene.clear();
