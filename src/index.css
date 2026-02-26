@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+html {
+  cursor: none;
+  overflow-x: hidden;
+  /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #D4A853 #0a0a0a; /* warm amber thumb, dark track */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background-color: black;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* --- Custom Scrollbar for WebKit Browsers (Chrome, Safari, Edge) --- */
+
+/* The overall scrollbar container */
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* The track (the background of the scrollbar) */
+html::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+/* The draggable scrolling handle */
+html::-webkit-scrollbar-thumb {
+  background-color: rgba(212, 168, 83, 0.4);
+  border-radius: 20px;
+  border: 2px solid #0a0a0a;
+}
+
+/* Handle on hover */
+html::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(212, 168, 83, 0.65);
+}

@@ -1,0 +1,153 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function getUserRole() {
+      return get(/databases/$(database)/documents/adminusers/$(request.auth.uid)).data.role;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && getUserRole() == "admin";
+    }
+
+    function isNonEmptyString(value, maxLen) {
+      return value is string && value.size() > 0 && value.size() <= maxLen;
+    }
+
+    function isEmail(value) {
+      return value is string
+        && value.size() <= 320
+        && value.matches('^.+@.+\\..+$');
+    }
+
+    function isPhone(value) {
+      return value is string
+        && value.size() >= 7
+        && value.size() <= 20
+        && value.matches('^[0-9+\\-\\s()]+$');
+    }
+
+    function isIsoTimestamp(value) {
+      return value is string
+        && value.size() >= 10
+        && value.size() <= 40
+        && value.matches('^\\d{4}-\\d{2}-\\d{2}T');
+    }
+
+    function isContactMethod(value) {
+      return value in ['Email', 'Phone', 'WhatsApp'];
+    }
+
+    function isDomain(value) {
+      return value in [
+        'Web Development',
+        'App Development',
+        'Software Development',
+        'Cloud Computing',
+        'Digital Marketing & Graphic Design',
+        'Data Analysis',
+        'AI Engineer'
+      ];
+    }
+
+    function isLinkedInUrl(value) {
+      return value is string
+        && value.size() <= 200
+        && value.matches('^https?://(www\\.)?linkedin\\.com/.*');
+    }
+
+    function isResumePath(value) {
+      return value is string
+        && value.size() <= 300
+        && value.matches('^resumes/[^/]+\\.pdf$');
+    }
+
+    function isResumeUrl(value) {
+      return value is string
+        && value.size() <= 2000
+        && value.matches('^https?://');
+    }
+
+    function isValidUserDoc(data) {
+      return data.keys().hasOnly(['fullName', 'email', 'lastSubmissionAt'])
+        && isNonEmptyString(data.fullName, 120)
+        && isEmail(data.email)
+        && isIsoTimestamp(data.lastSubmissionAt);
+    }
+
+    function isValidContactDoc(data) {
+      return data.keys().hasOnly([
+        'fullName', 'email', 'company', 'phone', 'contactMethod',
+        'projectDetails', 'requirements', 'submittedAt'
+      ])
+        && isNonEmptyString(data.fullName, 120)
+        && isEmail(data.email)
+        && isNonEmptyString(data.company, 120)
+        && isPhone(data.phone)
+        && isContactMethod(data.contactMethod)
+        && isNonEmptyString(data.projectDetails, 2000)
+        && isNonEmptyString(data.requirements, 2000)
+        && isIsoTimestamp(data.submittedAt);
+    }
+
+    function isValidInternshipDoc(data) {
+      return data.keys().hasOnly([
+        'email', 'fullName', 'college', 'phone', 'contactMethod',
+        'domain', 'linkedin', 'aboutYou', 'whyInternship',
+        'resumePath', 'resumeUrl', 'submittedAt'
+      ])
+        && isEmail(data.email)
+        && isNonEmptyString(data.fullName, 120)
+        && isNonEmptyString(data.college, 160)
+        && isPhone(data.phone)
+        && isContactMethod(data.contactMethod)
+        && isDomain(data.domain)
+        && isLinkedInUrl(data.linkedin)
+        && isNonEmptyString(data.aboutYou, 2000)
+        && isNonEmptyString(data.whyInternship, 2000)
+        && isIsoTimestamp(data.submittedAt)
+        && (
+          ('resumePath' in data && isResumePath(data.resumePath)) ||
+          ('resumeUrl' in data && isResumeUrl(data.resumeUrl))
+        );
+    }
+
+    function isValidAdminUserDoc(data) {
+      return data.keys().hasOnly(['email', 'role', 'createdAt'])
+        && isEmail(data.email)
+        && data.role == 'user'
+        && isIsoTimestamp(data.createdAt);
+    }
+
+    match /users/{docId} {
+      allow create: if isValidUserDoc(request.resource.data);
+      allow read, delete, update: if isAdmin();
+
+      match /contact/{contactId} {
+        allow create: if isValidContactDoc(request.resource.data);
+        allow read, update, delete: if isAdmin();
+      }
+
+      match /internship/{internId} {
+        allow create: if isValidInternshipDoc(request.resource.data);
+        allow read, update, delete: if isAdmin();
+      }
+    }
+
+    match /adminusers/{adminId} {
+      allow read: if isOwner(adminId) || isAdmin();
+      allow create: if request.auth != null
+        && request.auth.uid == adminId
+        && isValidAdminUserDoc(request.resource.data);
+      allow update, delete: if false;
+    }
+  }
+}

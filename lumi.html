@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Photography by Tamizh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .display-font { font-family: 'Playfair Display', serif; }
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://picsum.photos/id/1015/1920/1080') center/cover no-repeat fixed;
+        }
+        .gallery-item { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gallery-item:hover { transform: scale(1.04); }
+        .nav-scrolled { background-color: rgba(9,9,11,0.95) !important; backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 py-6 transition-all">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-amber-400 rounded-full flex items-center justify-center text-zinc-950 font-bold text-3xl display-font">L</div>
+                <span class="text-3xl tracking-tighter display-font">LUMINA</span>
+            </div>
+            <div class="hidden md:flex gap-x-10 text-sm uppercase tracking-widest font-medium">
+                <a href="#work" class="hover:text-amber-400 transition">Work</a>
+                <a href="#about" class="hover:text-amber-400 transition">About</a>
+                <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+            </div>
+            <button onclick="toggleMenu()" class="md:hidden text-3xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-zinc-950 z-50 pt-24 px-8 flex flex-col gap-y-8 text-2xl">
+        <a href="#work" onclick="toggleMenu()" class="hover:text-amber-400">Work</a>
+        <a href="#about" onclick="toggleMenu()" class="hover:text-amber-400">About</a>
+        <a href="#contact" onclick="toggleMenu()" class="hover:text-amber-400">Contact</a>
+        <button onclick="toggleMenu()" class="mt-auto text-4xl text-zinc-400">✕</button>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-bg h-screen flex items-center justify-center text-center">
+        <div class="max-w-4xl px-6">
+            <p class="uppercase tracking-[6px] text-amber-400 text-sm mb-4">Chennai • Worldwide</p>
+            <h1 class="display-font text-7xl md:text-8xl font-light tracking-tighter leading-none">We don't just click.<br>We capture souls.</h1>
+            <p class="mt-8 text-xl text-zinc-300 max-w-lg mx-auto">Fine art photography by Tamizh – turning moments into timeless stories.</p>
+            <a href="#work" class="mt-12 inline-block bg-amber-400 text-zinc-950 font-semibold px-12 py-6 rounded-full hover:bg-white transition text-lg">View the Collection</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-28 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <img src="https://picsum.photos/id/64/900/1200" class="rounded-3xl shadow-2xl" alt="Tamizh">
+            <div class="space-y-8">
+                <span class="text-amber-400 tracking-widest uppercase text-sm">Tamizh Velan</span>
+                <h2 class="display-font text-6xl leading-none font-light">I chase light.<br>Everywhere.</h2>
+                <div class="text-lg text-zinc-300 leading-relaxed">
+                    Chennai-based photographer with 8+ years turning ordinary scenes into extraordinary art. 
+                    From Marina sunrise to Himalayan mist, every frame is a love letter to light.
+                </div>
+                <div class="grid grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="text-5xl font-light text-amber-400">280+</div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">Weddings</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-light text-amber-400">65</div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">Exhibitions</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-light text-amber-400">∞</div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mt-1">Stories told</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="work" class="py-28">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="uppercase text-amber-400 tracking-widest">2025 Collection</span>
+                <h2 class="display-font text-6xl font-light mt-3">Featured Frames</h2>
+            </div>
+
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-28 bg-zinc-900">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <h2 class="display-font text-6xl font-light">Ready to create magic?</h2>
+            <p class="mt-6 text-zinc-400 text-lg">Weddings • Portraits • Commercial • Travel shoots</p>
+            <form class="mt-12 space-y-6" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full bg-transparent border-b border-zinc-700 focus:border-amber-400 py-4 outline-none text-lg">
+                <input type="email" placeholder="Email" class="w-full bg-transparent border-b border-zinc-700 focus:border-amber-400 py-4 outline-none text-lg">
+                <textarea placeholder="Tell me about your vision..." rows="5" class="w-full bg-transparent border-b border-zinc-700 focus:border-amber-400 py-4 outline-none text-lg resize-none"></textarea>
+                <button type="submit" class="w-full bg-amber-400 text-zinc-950 py-6 rounded-full font-semibold text-xl hover:bg-white transition">Send Message</button>
+            </form>
+            <p class="mt-12 text-xs text-zinc-500">📍 Chennai, Tamil Nadu • Available worldwide</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 text-center text-zinc-500 text-sm">
+        © 2026 LUMINA Photography by Tamizh • Made with ❤️ in Chennai
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="hidden fixed inset-0 bg-black/95 z-[999] items-center justify-center p-6">
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 text-5xl text-white hover:text-amber-400">×</button>
+        <img id="lightbox-img" src="" class="max-h-[90vh] max-w-full object-contain rounded-2xl shadow-2xl" alt="">
+        <p id="lightbox-caption" class="text-center mt-6 text-zinc-400 text-lg"></p>
+    </div>
+
+    <script>
+        tailwind.config = { content: ["*"] }
+
+        const photos = [
+            {id:1015, caption:"Marina Sunrise • Chennai"},
+            {id:133, caption:"Shore Temple • Mahabalipuram"},
+            {id:201, caption:"Street Symphony • Mylapore"},
+            {id:251, caption:"The Silent Gaze • Portrait"},
+            {id:1016, caption:"Golden Fields • Tamil Nadu"},
+            {id:106, caption:"Lotus Pond • Kanchipuram"},
+            {id:145, caption:"Mist & Mountains • Ooty"},
+            {id:160, caption:"Urban Pulse • Broadway"}
+        ];
+
+        const grid = document.getElementById('gallery-grid');
+        photos.forEach(photo => {
+            const div = document.createElement('div');
+            div.className = `gallery-item overflow-hidden rounded-3xl cursor-pointer shadow-2xl`;
+            div.innerHTML = `
+                <img src="https://picsum.photos/id/\( {photo.id}/800/1000" class="w-full h-full object-cover" alt=" \){photo.caption}">
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent h-1/2 opacity-0 group-hover:opacity-100 transition-all p-6 flex items-end">
+                    <p class="text-sm">${photo.caption}</p>
+                </div>
+            `;
+            div.onclick = () => openLightbox(`https://picsum.photos/id/${photo.id}/1200/1600`, photo.caption);
+            grid.appendChild(div);
+        });
+
+        function openLightbox(src, caption) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.getElementById('lightbox').classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('hidden');
+            lb.classList.remove('flex');
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert("Message sent machaa! 📸 I'll reply soon 🔥");
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

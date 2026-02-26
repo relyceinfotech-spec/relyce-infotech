@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && firestore.get(/databases/(default)/documents/adminusers/$(request.auth.uid)).data.role == "admin";
+    }
+
+    match /resumes/{resumeFile} {
+      allow create: if request.resource.contentType == 'application/pdf'
+        && request.resource.size < 5 * 1024 * 1024
+        && resumeFile.matches('^.+\\.pdf$');
+
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}
