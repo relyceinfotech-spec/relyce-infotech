@@ -5,7 +5,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 
-const GhostCursor = ({
+const GhostCursorInner = ({
   className,
   style,
   trailLength = 50,
@@ -553,6 +553,18 @@ const GhostCursor = ({
   const mergedStyle = useMemo(() => ({ zIndex, ...style }), [zIndex, style]);
 
   return <div ref={containerRef} className={`ghost-cursor ${className ?? ''}`} style={mergedStyle} />;
+};
+
+const GhostCursor = (props) => {
+  // Check if device is touch-capable
+  const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  
+  // Return null on touch devices to avoid lagging the website
+  if (isTouch) {
+    return null;
+  }
+
+  return <GhostCursorInner {...props} />;
 };
 
 export default GhostCursor;
